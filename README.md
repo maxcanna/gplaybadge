@@ -4,16 +4,22 @@ Easily create a badge to promote your own android application in a single step. 
 
 ## How do I get set up?
 
-You can easily create an Heroku application:
+You've several way to get gplaybadge running:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+* You can easily create an Heroku application:
 
-Or manually:
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-* Install composer via ``` curl -sS https://getcomposer.org/installer | php ```
-* Install project dependencies via ```php composer.phar install```
-* Test locally via ``` php -S 0.0.0.0:3000 -t web/ ```
-* Deploy wherever you like
+* You can use now:
+
+  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/gplaybadge&env=MASHAPE_KEY&env=UA)
+
+* Or manually:
+
+  * Install composer via ``` curl -sS https://getcomposer.org/installer | php ```
+  * Install project dependencies via ```php composer.phar install```
+  * Test locally via ``` php -S 0.0.0.0:3000 -t web/ ```
+  * Deploy wherever you like
 
 In either case remember to set these two env vars:
 * `MASHAPE_KEY` to your [GPlay API key](https://api.gplay.ws/)
