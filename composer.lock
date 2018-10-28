@@ -1074,7 +1074,7 @@
     "platform": {
         "ext-imagick": "*",
         "ext-gd": "*",
-        "php": "^5.6.16"
+        "php": "^7.2.11"
     },
     "platform-dev": []
 }
