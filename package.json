@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Easily create a badge to promote your own android application in a single step",
   "scripts": {
-    "test": "npm run lint",
-    "lint": "node_modules/.bin/eslint .",
-    "postinstall": "npm prune"
+    "test": "yarn lint",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
