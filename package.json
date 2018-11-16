@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/maxcanna/gplaybadge#readme",
   "devDependencies": {
-    "eslint": "^3.9.1"
+    "eslint": "^5.9.0"
   }
 }
