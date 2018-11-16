@@ -102,7 +102,7 @@ class BadgeGenerator
             $appDetail['rating']['value'] . "/5.0 " .
             "(" . number_format($appDetail['rating']['count']) . " ratings)\n" .
             $appDetail['numDownloads'] . " downloads\n" .
-            "Last updated on" . strtolower($appDetail['datePublished']),
+            "Last updated on " . strtolower($appDetail['datePublished']),
             ICON_SIZE + 2 * MARGIN,
             20,
             $this->textStyleField
