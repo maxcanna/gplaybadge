@@ -12,7 +12,7 @@ You've several way to get gplaybadge running:
 
 * You can use now:
 
-  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/gplaybadge&env=MASHAPE_KEY&env=UA)
+  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/gplaybadge&env=RAPIDAPI_KEY&env=UA)
 
 * Or manually:
 
@@ -22,5 +22,5 @@ You've several way to get gplaybadge running:
   * Deploy wherever you like
 
 In either case remember to set these two env vars:
-* `MASHAPE_KEY` to your [GPlay API key](https://api.gplay.ws/)
+* `RAPIDAPI_KEY` to your [GPlay API key](https://api.gplay.ws/)
 * `UA` to your [Google Analytics Tracking ID](https://support.google.com/analytics/answer/1032385)

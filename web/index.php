@@ -34,9 +34,9 @@ $app->register(new ServiceControllerServiceProvider());
 
 $app->register(new RoutingServiceProvider());
 
-$app['ws.auth.header.name'] = 'X-Mashape-Key';
-$app['ws.auth.header.value'] = getenv('MASHAPE_KEY');
-$app['ws.url'] = 'https://gplaystore.p.mashape.com';
+$app['ws.auth.header.name'] = 'X-RapidAPI-Key';
+$app['ws.auth.header.value'] = getenv('RAPIDAPI_KEY');
+$app['ws.url'] = 'https://gplaystore.p.rapiadpi.com';
 
 $app['controllers.badge'] = function () use ($app) {
     return new BadgeController($app);
