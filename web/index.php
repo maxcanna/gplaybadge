@@ -36,7 +36,7 @@ $app->register(new RoutingServiceProvider());
 
 $app['ws.auth.header.name'] = 'X-RapidAPI-Key';
 $app['ws.auth.header.value'] = getenv('RAPIDAPI_KEY');
-$app['ws.url'] = 'https://gplaystore.p.rapiadpi.com';
+$app['ws.url'] = 'https://gplaystore.p.rapidapi.com';
 
 $app['controllers.badge'] = function () use ($app) {
     return new BadgeController($app);
