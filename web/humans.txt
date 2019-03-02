@@ -2,6 +2,6 @@ This website was born primarily as a quick example of usage for my Google Play A
 If you find it useful, or you just wanna give me some advice/critic, feel free to drop my a line.
 
 Chef: Massimiliano Cannarozzo
-Contact: massi [at] massi.ws
+Contact: massi [at] massi.dev
 Twitter: @maxcannamc
 From: Milan, Italy
