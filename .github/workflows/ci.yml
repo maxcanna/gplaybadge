@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  ci:
+    runs-on: ubuntu-18.04
+    container:
+      image: php:7.2-alpine
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: Install libraries and run test
+      run: |
+        apk add git
+        curl -s https://getcomposer.org/installer | php
+        mv composer.phar /usr/local/bin/composer
+        wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-8.phar
+        chmod +x /usr/local/bin/phpunit
+        composer install --ignore-platform-reqs --prefer-source --no-interaction
+        phpunit --version
