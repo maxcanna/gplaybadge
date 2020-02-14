@@ -11,11 +11,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v1
     - name: Install libraries and run test
+      env:
+        RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
       run: |
-        apk add git
-        curl -s https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
-        wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-8.phar
-        chmod +x /usr/local/bin/phpunit
-        composer install --ignore-platform-reqs --prefer-source --no-interaction
-        phpunit --version
+        sh ./test.sh
