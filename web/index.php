@@ -38,27 +38,27 @@ $app['ws.auth.header.name'] = 'X-RapidAPI-Key';
 $app['ws.auth.header.value'] = getenv('RAPIDAPI_KEY');
 $app['ws.url'] = 'https://gplaystore.p.rapidapi.com';
 
-$app['controllers.badge'] = function () use ($app) {
+$app['controllers.badge'] = function() use ($app) {
     return new BadgeController($app);
 };
 
-$app['controllers.home'] = function () use ($app) {
+$app['controllers.home'] = function() use ($app) {
     return new HomeController($app);
 };
 
-$app['controllers.favicon'] = function () use ($app) {
+$app['controllers.favicon'] = function() use ($app) {
     return new FaviconController($app);
 };
 
-$app['service.generator'] = function () use ($app) {
+$app['service.generator'] = function() use ($app) {
     return new BadgeGenerator($app);
 };
 
-$app['service.fetcher'] = function () use ($app) {
+$app['service.fetcher'] = function() use ($app) {
     return new DataFetcher($app);
 };
 
-$app['service.guzzle'] = function () use ($app) {
+$app['service.guzzle'] = function() use ($app) {
     $g = new Client([
         'base_uri' => $app['ws.url'],
         'headers' => [
@@ -71,7 +71,7 @@ $app['service.guzzle'] = function () use ($app) {
 };
 
 //Error handler
-$app->error(function (\Exception $e, $code) use ($app) {
+$app->error(function(\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return null;
     }
