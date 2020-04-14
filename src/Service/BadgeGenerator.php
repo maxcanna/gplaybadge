@@ -37,7 +37,7 @@ class BadgeGenerator
         $this->dataFetcher = $this->app['service.fetcher'];
         $this->imageManager = new ImageManager(['driver' => 'imagick']);
 
-        $this->textStyleHead = function ($font) {
+        $this->textStyleHead = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */
             $font->file(FONT_FILE_PATH);
             $font->color(FONT_COLOR_HEAD);
@@ -46,7 +46,7 @@ class BadgeGenerator
             $font->valign('top');
         };
 
-        $this->textStyleField = function ($font) {
+        $this->textStyleField = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */
             $font->file(FONT_FILE_PATH);
             $font->color(FONT_COLOR_FIELD);
@@ -55,7 +55,7 @@ class BadgeGenerator
             $font->valign('top');
         };
 
-        $this->textStyleWatermark = function ($font) {
+        $this->textStyleWatermark = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */
             $font->file(FONT_FILE_PATH);
             $font->color(FONT_COLOR_FIELD);
@@ -64,7 +64,7 @@ class BadgeGenerator
             $font->valign('bottom');
         };
 
-        $this->textStylePrice = function ($font) {
+        $this->textStylePrice = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */
             $font->file(FONT_FILE_PATH);
             $font->color(FONT_COLOR_PRICE);
