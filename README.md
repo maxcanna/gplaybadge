@@ -1,4 +1,4 @@
-# gplaybadge  [![CI Status](https://github.com/maxcanna/gplaybadge/workflows/CI/badge.svg)](https://github.com/maxcanna/gplaybadge/actions) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maxcanna/gplaybadge/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maxcanna/gplaybadge/?branch=master) [![](https://img.shields.io/github/license/maxcanna/gplaybadge.svg)](https://github.com/maxcanna/gplaybadge/blob/master/LICENSE)
+# gplaybadge  [![CI Status](https://github.com/maxcanna/gplaybadge/workflows/CI/badge.svg)](https://github.com/maxcanna/gplaybadge/actions) [![](https://img.shields.io/github/license/maxcanna/gplaybadge.svg)](https://github.com/maxcanna/gplaybadge/blob/master/LICENSE)
 
 Easily create a badge to promote your own android application in a single step. [Demo](http://gplay.ws).
 
