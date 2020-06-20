@@ -10,10 +10,6 @@ You've several way to get gplaybadge running:
 
   [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-* You can use now:
-
-  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/gplaybadge&env=RAPIDAPI_KEY&env=UA)
-
 * Or manually:
 
   * Install composer via ``` curl -sS https://getcomposer.org/installer | php ```
