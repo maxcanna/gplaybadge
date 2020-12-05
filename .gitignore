@@ -1,6 +1,5 @@
-/phpunit.xml
-/vendor
-/build
-/.idea
-/composer.phar
-node_modules/
+phpunit.xml
+vendor
+build
+composer.phar
+node_modules
