@@ -12,6 +12,12 @@ jobs:
       run: curl -sS https://getcomposer.org/installer | php
     - name: Install php libraries
       run: php composer.phar install --ignore-platform-reqs
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.16.1
+    - name: Lint
+      run: npx eslint@^5.9.0 .
     - name: Run test
       env:
         RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
