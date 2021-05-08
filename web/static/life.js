@@ -3,21 +3,28 @@
  */
 
 /* globals $, Clipboard, ga, Ladda, topApps, badgePath */
-/* eslint-env browser */
-var imgSrc, img, code, packageIdInput, html, bbcode, mdown, buildButton, startTime;
+let imgSrc;
+let img;
+let code;
+let packageIdInput;
+let html;
+let bbcode;
+let mdown;
+let buildButton;
+let startTime;
 
-$(function () {
+$(() => {
     code = $('#badgeCode');
     packageIdInput = $('#packageIdInput');
     html = $('#html');
     bbcode = $('#bbcode');
     mdown = $('#mdown');
 
-    $('#buildButton').click(function (event) {
+    $('#buildButton').click(event => {
         const packageId = packageIdInput.val();
 
         event.preventDefault();
-        buildButton = Ladda.create(this);
+        buildButton = Ladda.create(document.querySelector('#buildButton'));
         if (packageId) {
             if (imgSrc === null || img.attr('src') === undefined || img.attr('src').indexOf(packageId) < 0) {
                 resetUi();
@@ -35,40 +42,38 @@ $(function () {
 
     img = $('#badgeImg');
     img.hide()
-        .on('load',function () {
-        imgSrc = img.attr('src');
-        const packageId = packageIdInput.val()
-            , storeUrl = 'https://play.google.com/store/apps/details?id=' + packageId;
+        .on('load', () => {
+            imgSrc = img.attr('src');
+            const packageId = packageIdInput.val();
+            const storeUrl = `https://play.google.com/store/apps/details?id=${packageId}`;
 
-        img.fadeIn(1000);
-        code.fadeIn(1000);
-        html.val('<a href="' + storeUrl + '"><img src="' + imgSrc + '"</a>');
-        bbcode.val('[url=' + storeUrl + '][img]' + imgSrc + '[/img][/url]');
-        mdown.val('[![Badge](' + imgSrc + ')](' + storeUrl + ')');
+            img.fadeIn(1000);
+            code.fadeIn(1000);
+            html.val(`<a href="${storeUrl}"><img src="${imgSrc}"></a>`);
+            bbcode.val(`[url=${storeUrl}][img]${imgSrc}[/img][/url]`);
+            mdown.val(`[![Badge](${imgSrc})](${storeUrl})`);
 
-        ga('send', 'event', 'badge', 'loaded', packageId);
-        ga('send', 'timing', 'badge', 'loaded', new Date().getTime() - startTime, packageId);
+            ga('send', 'event', 'badge', 'loaded', packageId);
+            ga('send', 'timing', 'badge', 'loaded', new Date().getTime() - startTime, packageId);
 
-        $('meta[property="og:image"]').attr('content', imgSrc);
+            $('meta[property="og:image"]').attr('content', imgSrc);
 
-        resetUi();
-    }).on('error', function () {
-        const packageId = packageIdInput.val();
-        imgSrc = null;
-        ga('send', 'event', 'badge', 'error', packageId);
-        ga('send', 'timing', 'badge', 'error', new Date().getTime() - startTime, packageId);
-        showError('Aw, Snap! Check the package name and try again');
-    });
+            resetUi();
+        }).on('error', () => {
+            const packageId = packageIdInput.val();
+            imgSrc = null;
+            ga('send', 'event', 'badge', 'error', packageId);
+            ga('send', 'timing', 'badge', 'error', new Date().getTime() - startTime, packageId);
+            showError('Aw, Snap! Check the package name and try again');
+        });
 
     const carousel = $('#badgeCarousel');
 
-    topApps.forEach(function (app, index) {
+    topApps.forEach((app, index) => {
         if (index === 0) {
             return;
         }
-        carousel.append('<div> <img data-lazy="' +
-            badgePath + '?id=' + app.id +
-            '" class="badgeCarouselItem"> </div>')
+        carousel.append(`<div> <img data-lazy="${badgePath}?id=${app.id}" class="badgeCarouselItem"> </div>`)
     });
 
     carousel.slick({
@@ -81,9 +86,7 @@ $(function () {
         swipe: false,
         touchMove: false,
         accessibility: false,
-        onAfterChange: function (slide, index) {
-            $('link[rel="shortcut icon"]').attr('href', topApps[index].image);
-        },
+        onAfterChange: (slide, index) => $('link[rel="shortcut icon"]').attr('href', topApps[index].image),
         autoplaySpeed: 7000,
     });
 
@@ -91,55 +94,56 @@ $(function () {
     bindButton('bbcode');
     bindButton('mdown');
 
-    $('.modal').on('shown.bs.modal', function () {
-        ga('send', 'event', 'modal', 'shown', this.id);
-    }).on('hidden.bs.modal', function () {
-        ga('send', 'event', 'modal', 'hidden', this.id);
-    });
-
+    $('.modal')
+        .on('shown.bs.modal', () => ga('send', 'event', 'modal', 'shown'))
+        .on('hidden.bs.modal', () => ga('send', 'event', 'modal', 'hidden'));
 });
 
-const resetUi = function () {
-        packageIdInput.attr('disabled', false);
-        buildButton.stop();
-    }
-    , showError = function (error) {
-        resetUi();
-        showMessage(error, true);
-    }
-    , showMessage = function (message, isError) {
-        ga('send', 'event', 'message', 'show', message, isError ? 1 : 0);
-        $.bootstrapGrowl(message, {
-            ele: '#growlAnchor',
-            type: isError ? 'danger' : 'success',
-            align: 'center',
-            width: 'auto',
-            delay: 4000,
-            allow_dismiss: false,
-            stackup_spacing: 10,
-        });
-    }
-    , afterCopy = function () {
-        showMessage('Code copied to clipboard, paste, paste, paste!', false);
-    }
-    , copyError = function() {
-        ga('send', 'event', 'code', 'copy', 'error');
-        code.find('.input-group').removeClass();
-        code.find('.input-group-btn').remove();
-    }
-    , bindButton = function (buttonId) {
-        (new Clipboard('#copy-' + buttonId))
-            .on('beforecopy', function () {
-                ga('send', 'event', 'code', 'copy', buttonId);
-            })
-            .on('success', afterCopy)
-            .on('error', copyError);
-    }
-    , fetchBadge = function (packageId) {
-        packageIdInput.attr('disabled', true);
-        buildButton.start();
-        code.fadeOut(250);
-        img.fadeOut(250, function () {
-            img.attr('src', badgePath + '?id=' + packageId);
-        });
-    };
+const resetUi = () => {
+    packageIdInput.attr('disabled', false);
+    buildButton.stop();
+};
+
+const showError = error => {
+    resetUi();
+    showMessage(error, true);
+};
+
+const showMessage = (message, isError) => {
+    ga('send', 'event', 'message', 'show', message, isError ? 1 : 0);
+    $.bootstrapGrowl(message, {
+        ele: '#growlAnchor',
+        type: isError ? 'danger' : 'success',
+        align: 'center',
+        width: 'auto',
+        delay: 4000,
+        allow_dismiss: false,
+        stackup_spacing: 10,
+    });
+};
+
+const afterCopy = () => {
+    showMessage('Code copied to clipboard, paste, paste, paste!', false);
+};
+
+const copyError = () => {
+    ga('send', 'event', 'code', 'copy', 'error');
+    code.find('.input-group').removeClass();
+    code.find('.input-group-btn').remove();
+};
+
+const bindButton = buttonId => {
+    (new Clipboard(`#copy-${buttonId}`))
+        .on('beforecopy', () => {
+            ga('send', 'event', 'code', 'copy', buttonId);
+        })
+        .on('success', afterCopy)
+        .on('error', copyError);
+};
+
+const fetchBadge = packageId => {
+    packageIdInput.attr('disabled', true);
+    buildButton.start();
+    code.fadeOut(250);
+    img.fadeOut(250, () => img.attr('src', `${badgePath}?id=${packageId}`));
+};
