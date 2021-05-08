@@ -3,7 +3,6 @@
  */
 
 /* globals $, Clipboard, ga, Ladda, topApps, badgePath */
-/* eslint-env browser */
 let imgSrc;
 let img;
 let code;
