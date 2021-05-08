@@ -8,7 +8,11 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v1
-    - name: Install libraries and run test
+    - name: Install composer
+      run: curl -sS https://getcomposer.org/installer | php
+    - name: Install php libraries
+      run: php composer.phar install --ignore-platform-reqs
+    - name: Run test
       env:
         RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
       run: |
