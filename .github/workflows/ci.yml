@@ -8,6 +8,11 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v1
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.2.11'
+        extensions: imagick, gd
     - name: Install composer
       run: curl -sS https://getcomposer.org/installer | php
     - name: Install php libraries
