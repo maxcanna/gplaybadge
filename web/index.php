@@ -81,7 +81,7 @@ $app->error(function(\Throwable $e, Request $request, $code) use ($app) {
             $message = 'Sorry, the page you are looking for could not be found.';
             break;
         default:
-            $message = 'We are sorry, but something went terribly wrong.';
+            $message = 'We are sorry, but something went terribly wrong: '.$e->getMessage();
     }
 
     return $app['twig']->render('error.twig', ['message' => $message]);
