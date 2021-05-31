@@ -40,4 +40,14 @@ class DataFetcher
 
         return $appDetail;
     }
+
+    public function fetchTopApps()
+    {
+        $topApps = json_decode($this->guzzle->get('/topFreeApps')->getBody()->getContents(), true);
+
+        shuffle($topApps);
+        array_splice($topApps, 5);
+
+        return $topApps;
+    }
 }
