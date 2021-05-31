@@ -16,7 +16,7 @@ jobs:
     - name: Install composer
       run: curl -sS https://getcomposer.org/installer | php
     - name: Install php libraries
-      run: php composer.phar install --ignore-platform-reqs
+      run: php composer.phar install
     - name: Setup node
       uses: actions/setup-node@v1
       with:
