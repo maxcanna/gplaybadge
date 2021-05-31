@@ -10,6 +10,7 @@
         "intervention/image": "~2.3.7",
         "ext-imagick": "*",
         "ext-gd": "*",
+        "ext-newrelic": "*",
         "php": "^7.4.0",
         "twig/twig": "v1.26.1"
     },
