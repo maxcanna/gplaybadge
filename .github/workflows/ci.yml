@@ -3,20 +3,27 @@ name: CI
 on: [push]
 
 jobs:
+  fixups:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: Check if there are fixup commits
+      run: git log --pretty=format:%s origin/master.. | xargs | grep -v fixup
   ci:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v1
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.2.11'
-        extensions: imagick, gd
+        php-version: '7.4'
+        extensions: imagick, gd, newrelic
     - name: Install composer
       run: curl -sS https://getcomposer.org/installer | php
     - name: Install php libraries
-      run: php composer.phar install --ignore-platform-reqs
+      run: php composer.phar install
     - name: Setup node
       uses: actions/setup-node@v1
       with:
