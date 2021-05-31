@@ -10,7 +10,7 @@
         "intervention/image": "~2.3.7",
         "ext-imagick": "*",
         "ext-gd": "*",
-        "php": "^7.2.11"
+        "php": "^7.4.0"
     },
     "autoload": {
         "psr-4": {
