@@ -15,19 +15,20 @@ use Symfony\Component\HttpFoundation\Response;
 class FaviconController
 {
     protected $app;
+    protected $dataFetcher;
 
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->dataFetcher = $this->app['service.fetcher'];
     }
 
     public function faviconAction()
     {
         $topApps = [];
-        $guzzle = $this->app['service.guzzle'];
 
         try {
-            $topApps = json_decode($guzzle->get('/topFreeApps')->getBody()->getContents(), true);
+            $topApps = $this->dataFetcher->fetchTopApps();
         } catch (ClientException $e) {
             $this->app['monolog']->addError($e->getMessage());
             $this->app->abort(500);
@@ -35,8 +36,6 @@ class FaviconController
             $this->app['monolog']->addError($e->getMessage());
             $this->app->abort(500);
         }
-
-        shuffle($topApps);
 
         return $this->app->redirect($topApps[0]['image']);
     }
