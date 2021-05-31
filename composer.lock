@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86087b999ddf91cff861c14dde6155c3",
+    "content-hash": "42e16359fbae55f33eba93f678eff0cf",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1650,7 +1650,6 @@
     "platform": {
         "ext-imagick": "*",
         "ext-gd": "*",
-        "ext-newrelic": "*",
         "php": "^7.4.0"
     },
     "platform-dev": [],
