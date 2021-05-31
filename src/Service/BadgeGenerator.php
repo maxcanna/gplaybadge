@@ -37,7 +37,7 @@ class BadgeGenerator
     {
         $this->app = $app;
         $this->dataFetcher = $this->app['service.fetcher'];
-        $this->imageManager = new ImageManager(['driver' => 'imagick']);
+        $this->imageManager = new ImageManager();
 
         $this->textStyleHead = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */
@@ -85,16 +85,16 @@ class BadgeGenerator
 
         $img->text(
             $hostname,
-            $img->getWidth() - 1.5 * MARGIN,
-            $img->getHeight() - 1.5 * MARGIN,
+            intval($img->getWidth() - 1.5 * MARGIN),
+            intval($img->getHeight() - 1.5 * MARGIN),
             $this->textStyleWatermark
         );
 
         $img->insert(
             $this->imageManager->make($appDetail['icon'])->resize(ICON_SIZE, ICON_SIZE),
             'top-left',
-            1.2 * MARGIN,
-            1.5 * MARGIN
+            intval(1.2 * MARGIN),
+            intval(1.5 * MARGIN)
         );
 
         $img->text($appDetail['name'], ICON_SIZE + 2 * MARGIN, 1.5 * MARGIN, $this->textStyleHead);
@@ -105,15 +105,15 @@ class BadgeGenerator
             "(" . number_format($appDetail['rating']['count']) . " ratings)\n" .
             $appDetail['numDownloads'] . " downloads\n" .
             "Last updated on " . strtolower($appDetail['datePublished']),
-            ICON_SIZE + 2 * MARGIN,
-            20,
+            intval(ICON_SIZE + 2 * MARGIN),
+            40,
             $this->textStyleField
         );
 
         $img->text(
             $appDetail['price'] > 0 ? $appDetail['currency'] . " " . number_format($appDetail['price'], 2) : 'FREE',
-            $img->getWidth() - 50,
-            2 * MARGIN,
+            intval($img->getWidth() - 50),
+            intval(2 * MARGIN),
             $this->textStylePrice
         );
 
