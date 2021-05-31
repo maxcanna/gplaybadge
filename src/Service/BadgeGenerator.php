@@ -37,7 +37,7 @@ class BadgeGenerator
     {
         $this->app = $app;
         $this->dataFetcher = $this->app['service.fetcher'];
-        $this->imageManager = new ImageManager(['driver' => 'imagick']);
+        $this->imageManager = new ImageManager();
 
         $this->textStyleHead = function($font) {
             /** @var \Intervention\Image\AbstractFont $font */

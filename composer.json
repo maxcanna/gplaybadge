@@ -7,7 +7,7 @@
         "guzzlehttp/guzzle": "~v7",
         "symfony/twig-bridge": "~3.1.2",
         "monolog/monolog": "v1.26.1",
-        "intervention/image": "~2.3.7",
+        "intervention/image": "v2",
         "ext-imagick": "*",
         "ext-gd": "*",
         "php": "^7.4.0",
