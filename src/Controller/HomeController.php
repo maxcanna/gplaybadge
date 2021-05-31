@@ -15,19 +15,20 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController
 {
     protected $app;
+    protected $dataFetcher;
 
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->dataFetcher = $this->app['service.fetcher'];
     }
 
     public function homeAction()
     {
         $topApps = [];
-        $guzzle = $this->app['service.guzzle'];
 
         try {
-            $topApps = json_decode($guzzle->get('/topFreeApps')->getBody()->getContents(), true);
+            $topApps = $this->dataFetcher->fetchTopApps();
         } catch (ClientException $e) {
             $this->app['monolog']->addError($e->getMessage());
             $this->app->abort(500);
@@ -35,9 +36,6 @@ class HomeController
             $this->app['monolog']->addError($e->getMessage());
             $this->app->abort(500);
         }
-
-        shuffle($topApps);
-        array_splice($topApps, 5);
 
         return (new Response($this->app['twig']->render('home.twig', [
             'top_apps' => $topApps,
