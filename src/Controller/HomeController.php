@@ -25,17 +25,7 @@ class HomeController
 
     public function homeAction()
     {
-        $topApps = [];
-
-        try {
-            $topApps = $this->dataFetcher->fetchTopApps();
-        } catch (ClientException $e) {
-            $this->app['monolog']->addError($e->getMessage());
-            $this->app->abort(500);
-        } catch (RequestException $e) {
-            $this->app['monolog']->addError($e->getMessage());
-            $this->app->abort(500);
-        }
+        $topApps = $this->dataFetcher->fetchTopApps();
 
         return (new Response($this->app['twig']->render('home.twig', [
             'top_apps' => $topApps,
