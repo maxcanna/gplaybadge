@@ -71,7 +71,7 @@ $app['service.guzzle'] = function() use ($app) {
 };
 
 //Error handler
-$app->error(function(\Exception $e, $code) use ($app) {
+$app->error(function(\Throwable $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return null;
     }
