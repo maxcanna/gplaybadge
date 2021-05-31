@@ -30,6 +30,8 @@ class BadgeGenerator
     protected $textStyleField;
     protected $textStyleWatermark;
     protected $textStylePrice;
+    protected $dataFetcher;
+    protected $imageManager;
 
     public function __construct(Application $app)
     {

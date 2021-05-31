@@ -71,7 +71,7 @@ $app['service.guzzle'] = function() use ($app) {
 };
 
 //Error handler
-$app->error(function(\Exception $e, $code) use ($app) {
+$app->error(function(\Throwable $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return null;
     }
@@ -81,7 +81,7 @@ $app->error(function(\Exception $e, $code) use ($app) {
             $message = 'Sorry, the page you are looking for could not be found.';
             break;
         default:
-            $message = 'We are sorry, but something went terribly wrong.';
+            $message = 'We are sorry, but something went terribly wrong: '.$e->getMessage();
     }
 
     return $app['twig']->render('error.twig', ['message' => $message]);

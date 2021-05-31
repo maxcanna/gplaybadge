@@ -74,15 +74,9 @@ class BadgeController
             return $response;
         }
 
-        try {
-            $img = $this->badgeGenerator->generate($packageId, $lang, $request->getHost());
-            $response->setContent($img->encode(MIMETYPE));
-            $response->headers->set('Content-Type', MIMETYPE);
-        } catch (RequestException $e) {
-            $this->app->abort($e->getCode(), 'Error getting image data');
-        } catch (\Exception $e) {
-            $response->setStatusCode(500);
-        }
+        $img = $this->badgeGenerator->generate($packageId, $lang, $request->getHost());
+        $response->setContent($img->encode(MIMETYPE));
+        $response->headers->set('Content-Type', MIMETYPE);
 
         return $response;
     }
