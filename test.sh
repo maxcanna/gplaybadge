@@ -5,7 +5,7 @@ php -S 0.0.0.0:3003 -t web/ &
 sleep 3
 
 printf "Checking is up\n"
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" localhost:3003)
+STATUS=$(curl -s -o badge.png -w "%{http_code}" localhost:3003/badge/?id=net.luxteam.sacal)
 
 printf "Terminating server\n"
 killall php
@@ -18,5 +18,3 @@ else
   printf "All good!\n"
   exit 0
 fi
-
-
