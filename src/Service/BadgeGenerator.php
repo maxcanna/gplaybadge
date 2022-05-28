@@ -101,8 +101,8 @@ class BadgeGenerator
 
         $img->text(
             "by {$appDetail['author']}\n" .
-//            $appDetail['rating']['value'] . "/5.0 " .
-//            "(" . number_format($appDetail['rating']['count']) . " ratings)\n" .
+            $appDetail['rating']['value'] . "/5.0 " .
+            "(" . number_format($appDetail['rating']['count']) . " ratings)\n" .
             $appDetail['numDownloads'] . " downloads\n" .
             "Last updated on " . strtolower($appDetail['datePublished']),
             intval(ICON_SIZE + 2 * MARGIN),
