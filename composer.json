@@ -11,7 +11,7 @@
         "ext-imagick": "*",
         "ext-gd": "*",
         "php": "^7.4.0",
-        "twig/twig": "v1.38.0"
+        "twig/twig": "v1.44.7"
     },
     "autoload": {
         "psr-4": {
