@@ -6,11 +6,7 @@ Easily create a badge to promote your own android application in a single step. 
 
 You've several way to get gplaybadge running:
 
-* You can easily create an Heroku application:
-
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-* Or manually:
+* Manually:
 
   * Install composer via ``` curl -sS https://getcomposer.org/installer | php ```
   * Install project dependencies via ```php composer.phar install```
